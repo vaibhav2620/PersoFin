@@ -18,7 +18,7 @@ public class Transaction {
 	@Id
 	private long transaction_id;
 	@Column
-	private user user;
+	private Long userId;
 	@Enumerated(EnumType.STRING)
 	@Column	
 	private TransactionType transactionType;
@@ -37,11 +37,12 @@ public class Transaction {
 
 	}
 	
-	public Transaction(long transaction_id, com.project.PersoFin.models.user user, TransactionType transactionType,
-			String title, Double amount, String discription, String category, LocalDateTime dateTime) {
+
+	public Transaction(long transaction_id, Long userId, TransactionType transactionType, String title, Double amount,
+			String discription, String category, LocalDateTime dateTime) {
 		super();
 		this.transaction_id = transaction_id;
-		this.user = user;
+		this.userId = userId;
 		this.transactionType = transactionType;
 		this.title = title;
 		this.amount = amount;
@@ -49,6 +50,8 @@ public class Transaction {
 		this.category = category;
 		this.dateTime = dateTime;
 	}
+
+
 	/**
 	 * @return the transaction_id
 	 */
@@ -61,18 +64,23 @@ public class Transaction {
 	public void setTransaction_id(long transaction_id) {
 		this.transaction_id = transaction_id;
 	}
+
 	/**
-	 * @return the user
+	 * @return the userId
 	 */
-	public user getUser() {
-		return user;
+	public Long getUserId() {
+		return userId;
 	}
+
+
 	/**
-	 * @param user the user to set
+	 * @param userId the userId to set
 	 */
-	public void setUser(user user) {
-		this.user = user;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
+
+
 	/**
 	 * @return the transactionType
 	 */
