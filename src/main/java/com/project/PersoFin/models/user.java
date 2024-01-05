@@ -4,6 +4,8 @@ import com.project.PersoFin.enums.userRoles;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,6 +24,7 @@ public class user {
 	String email_id;
 	@Column
 	String passwordString;
+	@Enumerated(EnumType.STRING)
 	@Column
 	userRoles user_role;
 	public user() {
