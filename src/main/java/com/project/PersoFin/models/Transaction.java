@@ -8,7 +8,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,9 +20,11 @@ import jakarta.persistence.Table;
 public class Transaction {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long transaction_id;
-	@Column
-	private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private user user;
 	@Enumerated(EnumType.STRING)
 	@Column	
 	private TransactionType transactionType;
@@ -38,11 +44,11 @@ public class Transaction {
 	}
 	
 
-	public Transaction(long transaction_id, Long userId, TransactionType transactionType, String title, Double amount,
-			String discription, String category, LocalDateTime dateTime) {
+	public Transaction(long transaction_id, com.project.PersoFin.models.user user, TransactionType transactionType,
+			String title, Double amount, String discription, String category, LocalDateTime dateTime) {
 		super();
 		this.transaction_id = transaction_id;
-		this.userId = userId;
+		this.user = user;
 		this.transactionType = transactionType;
 		this.title = title;
 		this.amount = amount;
@@ -50,6 +56,8 @@ public class Transaction {
 		this.category = category;
 		this.dateTime = dateTime;
 	}
+
+
 
 
 	/**
@@ -65,19 +73,21 @@ public class Transaction {
 		this.transaction_id = transaction_id;
 	}
 
+
+
 	/**
-	 * @return the userId
+	 * @return the user
 	 */
-	public Long getUserId() {
-		return userId;
+	public user getUser() {
+		return user;
 	}
 
 
 	/**
-	 * @param userId the userId to set
+	 * @param user the user to set
 	 */
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUser(user user) {
+		this.user = user;
 	}
 
 

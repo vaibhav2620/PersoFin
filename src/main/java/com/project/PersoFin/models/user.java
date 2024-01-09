@@ -1,7 +1,10 @@
 package com.project.PersoFin.models;
 
+import java.util.List;
+
 import com.project.PersoFin.enums.userRoles;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,6 +12,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,6 +31,15 @@ public class user {
 	@Enumerated(EnumType.STRING)
 	@Column
 	private userRoles user_role;
+	
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Transaction> transactions;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Reminder> reminders;
+	
+	
 	
 	public user() {
 		
