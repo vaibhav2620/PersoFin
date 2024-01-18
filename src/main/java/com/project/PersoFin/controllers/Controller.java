@@ -14,7 +14,6 @@ import com.project.PersoFin.models.user;
 
 
 @RestController
-@RequestMapping("/persoFin/v1")
 public class Controller {
 
 	@Autowired
@@ -23,10 +22,11 @@ public class Controller {
 	@Autowired
 	private TransactionDao transaction_Doo;
 	
-	@RequestMapping("")
+	@GetMapping("/public")
 	public String home() {
 		return "home page";
 	}
+	
 	@GetMapping("/Users")
 	public List<user> getuserslist(){
 		
