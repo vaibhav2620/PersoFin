@@ -4,11 +4,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
-import com.project.PersoFin.models.Reminder;
+import com.project.PersoFin.daos.TransactionDao;
+import com.project.PersoFin.daos.userDao;
 import com.project.PersoFin.models.Transaction;
 import com.project.PersoFin.models.user;
-import com.project.PersoFin.services.ReminderService;
 import com.project.PersoFin.services.TransactionService;
 import com.project.PersoFin.services.UserService;
 
@@ -21,8 +20,10 @@ public class Controller {
 	@Autowired
 	private TransactionService transactionService;
 	
+	
 	@Autowired
-	private ReminderService reminderService;
+	private TransactionDao transaction_Doo;
+	
 
 	
 	
@@ -33,13 +34,16 @@ public class Controller {
 	
 	@GetMapping("/Users")
 	public List<user> getuserslist(){
-		return userService.getallUsers();
+		return UserService.getallUsers();
 	}
 	
 	@GetMapping("/Transactions")
 	public List<Transaction> getTransactionslist(){
 		return transactionService.getAllTransaction();
 	}
+	
+	
+	
 	
     // User Endpoints
     @PostMapping("/register")
@@ -59,9 +63,5 @@ public class Controller {
     	return transactionService.FindBYtransactionType(type);
     }
     
-    @GetMapping("/UserReminders")
-    public List<Reminder> getReminderforUser(@RequestBody int id){
-    	return reminderService.getreminderbyUserID(id);
-    }
 	
 }

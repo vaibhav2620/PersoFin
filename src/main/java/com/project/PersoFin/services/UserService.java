@@ -3,32 +3,28 @@ package com.project.PersoFin.services;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
+import com.project.PersoFin.daos.userDao;
 import org.springframework.stereotype.Service;
 
-import com.project.PersoFin.daos.UserDao;
+
 import com.project.PersoFin.models.user;
 
 @Service
 public class UserService {
 
-	private final UserDao userDao;
-	
-
 	@Autowired
-	public UserService(UserDao userDao) {
-		this.userDao = userDao;
-	}
+	public static userDao UserDao;
 	
-	public List<user> getallUsers(){
-		return userDao.findAll();
+	public static List<user> getallUsers(){
+		return UserDao.findAll();
 	}
 	
 	public user registerUser(user User) {
-		return userDao.save(User);
+		return UserDao.save(User);
 	}
 	
 	public Optional<user> FindUser(int id) {
-		return userDao.findById((long) id);
+		return UserDao.findById((long) id);
 	}
 	
 	
