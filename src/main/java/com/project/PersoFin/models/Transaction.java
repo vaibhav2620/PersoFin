@@ -2,6 +2,8 @@ package com.project.PersoFin.models;
 
 import java.time.LocalDateTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.project.PersoFin.enums.TransactionType;
 
 import jakarta.persistence.Column;
